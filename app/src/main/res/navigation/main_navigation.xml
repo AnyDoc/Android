@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/navigation_splash">
+    <fragment
+        android:id="@+id/navigation_splash"
+        android:name="com.bocdoc.anydoc.presentation.SlashFragment"
+        android:label="SplashFragment" >
+        <action
+            android:id="@+id/action_splash_to_navigation_add_image"
+            app:destination="@id/navigation_add_image" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_add_image"
+        android:name="com.bocdoc.anydoc.presentation.AddImageFrament"
+        android:label="AddImageFragment" />
+</navigation>
