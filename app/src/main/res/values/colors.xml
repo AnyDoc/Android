@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--AnyDoc Mono Color-->
+    <color name="anydoc_neutral_10">#1A1A1A</color>
+    <color name="anydoc_neutral_20">#333333</color>
+    <color name="anydoc_neutral_30">#4D4D4D</color>
+    <color name="anydoc_neutral_40">#666666</color>
+    <color name="anydoc_neutral_50">#808080</color>
+    <color name="anydoc_neutral_60">#999999</color>
+    <color name="anydoc_neutral_70">#B3B3B3</color>
+    <color name="anydoc_neutral_80">#CCCCCC</color>
+    <color name="anydoc_neutral_90">#E6E6E6</color>
+    <color name="anydoc_neutral_95">#F2F2F2</color>
+    <color name="anydoc_neutral_99">#FCFCFC</color>
+    <color name="anydoc_white">#FFFFFF</color>
+
+    <!--AnyDoc Primary Color-->
+    <color name="anydoc_primary_10">#00B98C</color>
+    <color name="anydoc_primary_20">#19BF97</color>
+    <color name="anydoc_primary_30">#31C5A1</color>
+    <color name="anydoc_primary_40">#4ACBAC</color>
+    <color name="anydoc_primary_50">#62D1B6</color>
+    <color name="anydoc_primary_60">#7AD6C0</color>
+    <color name="anydoc_primary_70">#93DDCB</color>
+    <color name="anydoc_primary_80">#ACE3D6</color>
+    <color name="anydoc_primary_90">#C4E9E0</color>
+    <color name="anydoc_primary_99">#DDEFEB</color>
+
+    <!--AnyDoc Error Color-->
+    <color name="anydoc_error_10">#410E0B</color>
+    <color name="anydoc_error_20">#601410</color>
+    <color name="anydoc_error_30">#8C1D18</color>
+    <color name="anydoc_error_40">#8C1D18</color>
+    <color name="anydoc_error_50">#DC362E</color>
+    <color name="anydoc_error_60">#E46962</color>
+    <color name="anydoc_error_70">#EC928E</color>
+    <color name="anydoc_error_80">#F2B8B5</color>
+    <color name="anydoc_error_90">#F9DEDC</color>
+    <color name="anydoc_error_95">#FCEEEE</color>
+    <color name="anydoc_error_99">#FFFBF9</color>
+
+</resources>
