@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">AnyDoc</string>
+    <!--splash-->
+    <string name="splash_app_logo">app logo</string>
+    <string name="splash_team_name">team name</string>
+
+    <!--onboarding-->
+    <string name="onboarding_illustration">onboarding illustration</string>
+    <string name="onboarding_title"><![CDATA[<font color="#00B98C">AnyDoc</font>과 함께<br>사랑하는 반려동물의<br>피부 증상을 알아봐요]]></string>
+    <string name="onboarding_move_to_next">Start</string>
 </resources>
