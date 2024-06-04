@@ -62,7 +62,7 @@
     </style>
 
     <style name="TextAppearance.AnyDoc.Regular.Content04">
-        <item name="fontFamily">@font/font_pretendard_semibold</item>
+        <item name="fontFamily">@font/font_pretendard_regular</item>
         <item name="android:textSize">14sp</item>
         <item name="lineHeight">20dp</item>
     </style>
