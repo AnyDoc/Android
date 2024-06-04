@@ -1,18 +1,21 @@
 package com.bocdoc.anydoc.presentation
 
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.bocdoc.anydoc.R
 import com.bocdoc.anydoc.coreui.base.BindingFragment
 import com.bocdoc.anydoc.coreui.fragment.colorOf
 import com.bocdoc.anydoc.databinding.FragmentSplashBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SplashFragment : BindingFragment<FragmentSplashBinding>(R.layout.fragment_splash) {
 
+    private var job: Job? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         changeStatusBarColor()
@@ -26,11 +29,17 @@ class SplashFragment : BindingFragment<FragmentSplashBinding>(R.layout.fragment_
     }
 
     private fun moveToNextPage() {
-        Handler(Looper.getMainLooper()).postDelayed({
+        job = CoroutineScope(Dispatchers.Main).launch {
+            delay(1500)
             findNavController().navigate(R.id.action_splash_to_navigation_onboarding)
             activity?.window?.apply {
                 statusBarColor = colorOf(R.color.anydoc_white)
             }
-        }, 1500)
+        }
+    }
+
+    override fun onDestroyView() {
+        job?.cancel()
+        super.onDestroyView()
     }
 }
