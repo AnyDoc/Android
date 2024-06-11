@@ -33,3 +33,11 @@ fun Context.hideKeyboard(view: View) {
     val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
     inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 }
+
+fun Context.statusBarColorOf(
+    @ColorRes resId: Int,
+) {
+    if (this is Activity) {
+        window?.statusBarColor = colorOf(resId)
+    }
+}
