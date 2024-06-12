@@ -14,25 +14,41 @@ class SelectAddImageDialog(
     val clickCamera: View.OnClickListener,
     val clickGallery: View.OnClickListener
 ) : Dialog(context) {
-    private lateinit var binding: SelectAddImageDialogBinding
+    private val binding: SelectAddImageDialogBinding =
+        SelectAddImageDialogBinding.inflate(layoutInflater)
 
-    fun showDialog() {
-        // Dialog 인스턴스 초기화
-        binding = SelectAddImageDialogBinding.inflate(layoutInflater)
-
-        // 콘텐츠 추가 전에 requestFeature() 호출
+    init {
         requestWindowFeature(Window.FEATURE_NO_TITLE) // 타이틀바 제거
-
-        // Dialog 설정
         setContentView(binding.root)
-        window?.setGravity(Gravity.CENTER) // 다이얼로그 위치
-        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) // 테두리 없애기
-        setCanceledOnTouchOutside(true) // 다이얼로그의 바깥 화면을 눌렀을 때 다이얼로그가 닫히게
-        show()
+        window?.apply {
+            setGravity(Gravity.CENTER) // 다이얼로그 위치
+            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT)) // 테두리 없애기
+        }
+        initCameraBtnClickListener()
+        initGalleryBtnClickListener()
+    }
 
+    // 카메라 버튼
+    private fun initCameraBtnClickListener() {
         with(binding) {
-            btnSelectAddCamera.setOnClickListener(clickCamera)
-            btnSelectAddGallery.setOnClickListener(clickGallery)
+            btnAddImageCamera.setOnClickListener {
+                btnAddImageCamera.isSelected = true
+                btnAddImageGallery.isSelected = false
+                clickCamera.onClick(it)
+                dismiss()
+            }
+        }
+    }
+
+    // 갤러리 버튼
+    private fun initGalleryBtnClickListener() {
+        with(binding) {
+            btnAddImageGallery.setOnClickListener {
+                btnAddImageGallery.isSelected = true
+                btnAddImageCamera.isSelected = false
+                clickGallery.onClick(it)
+                dismiss()
+            }
         }
     }
 }

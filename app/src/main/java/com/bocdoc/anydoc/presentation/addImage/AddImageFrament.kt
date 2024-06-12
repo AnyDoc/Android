@@ -67,7 +67,7 @@ class AddImageFragment : BindingFragment<FragmentAddImageBinding>(R.layout.fragm
             clickCamera = { openCamera() },
             clickGallery = { openGallery() }
         )
-        dialog.showDialog()
+        dialog.show()
     }
 
     // 카메라
