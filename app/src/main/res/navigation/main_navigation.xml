@@ -13,6 +13,6 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_add_image"
-        android:name="com.bocdoc.anydoc.presentation.AddImageFrament"
+        android:name="com.bocdoc.anydoc.presentation.addImage.AddImageFragment"
         android:label="AddImageFragment" />
 </navigation>
