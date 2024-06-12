@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="AppButtonOnPrimary" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@drawable/shape_green_fill_8_rect</item>
+        <item name="android:background">@drawable/shape_green_8_rect</item>
         <item name="android:textAppearance">@style/TextAppearance.AnyDoc.Bold.Button01</item>
         <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="AddImageButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:background">@drawable/sel_add_image_btn</item>
+        <item name="android:textAppearance">@style/TextAppearance.AnyDoc.SemiBold.Content01</item>
+        <item name="android:textColor">@drawable/sel_add_image_btn_tv</item>
     </style>
 </resources>
