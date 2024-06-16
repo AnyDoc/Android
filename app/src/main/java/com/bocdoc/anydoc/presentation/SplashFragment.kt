@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.bocdoc.anydoc.R
 import com.bocdoc.anydoc.coreui.base.BindingFragment
 import com.bocdoc.anydoc.coreui.fragment.colorOf
+import com.bocdoc.anydoc.coreui.fragment.statusBarColorOf
 import com.bocdoc.anydoc.databinding.FragmentSplashBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,16 +17,10 @@ import kotlinx.coroutines.launch
 class SplashFragment : BindingFragment<FragmentSplashBinding>(R.layout.fragment_splash) {
 
     private var job: Job? = null
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        changeStatusBarColor()
-        moveToNextPage()
-    }
 
-    private fun changeStatusBarColor() {
-        activity?.window?.apply {
-            statusBarColor = colorOf(R.color.anydoc_primary_10)
-        }
+    override fun initView() {
+        statusBarColorOf(R.color.anydoc_primary_10)
+        moveToNextPage()
     }
 
     private fun moveToNextPage() {
