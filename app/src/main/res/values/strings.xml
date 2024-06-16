@@ -34,4 +34,8 @@
     <string name="ai_result_detected_info_percent_title">| 진단 확률</string>
     <string name="ai_result_checklist">📌 진단 기반 체크리스트!</string>
     <string name="ai_result_hospital">🔎 주변 동물 병원 찾기</string>
+
+    <!--checklist-->
+    <string name="checklist_title">📌 진단 기반 체크리스트!</string>
+    <string name="checklist_sub_title">진단 기반 어떤 것들을 하면 좋은지에 대한 전문가 의견 기반 체크리스트입니다.</string>
 </resources>
