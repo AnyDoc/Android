@@ -8,6 +8,7 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.bocdoc.anydoc.coreui.context.statusBarColorOf
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -35,3 +36,9 @@ val Fragment.viewLifeCycle
 
 val Fragment.viewLifeCycleScope
     get() = viewLifecycleOwner.lifecycleScope
+
+fun Fragment.statusBarColorOf(
+    @ColorRes resId: Int
+) {
+    requireActivity().statusBarColorOf(resId)
+}
