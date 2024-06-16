@@ -1,7 +1,5 @@
 package com.bocdoc.anydoc.presentation
 
-import android.os.Bundle
-import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.bocdoc.anydoc.R
 import com.bocdoc.anydoc.coreui.base.BindingFragment
@@ -22,8 +20,7 @@ class LoadingFragment : BindingFragment<FragmentLoadingBinding>(R.layout.fragmen
         R.string.loading_info_text03
     )
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initView() {
         moveToNextPage()
         updateText()
     }

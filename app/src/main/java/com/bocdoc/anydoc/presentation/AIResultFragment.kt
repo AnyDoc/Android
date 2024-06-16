@@ -1,7 +1,5 @@
 package com.bocdoc.anydoc.presentation
 
-import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.bocdoc.anydoc.R
@@ -15,8 +13,7 @@ import com.bocdoc.anydoc.presentation.adapter.AiResultRadioAdapter
 
 class AIResultFragment : BindingFragment<FragmentAiResultBinding>(R.layout.fragment_ai_result) {
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun initView() {
         setImgList()
         setRadioList()
         setDetectedInfoList()
@@ -49,7 +46,6 @@ class AIResultFragment : BindingFragment<FragmentAiResultBinding>(R.layout.fragm
         adapter.aiResultRadioClick = object : ItemClick {
             override fun onClick(view: View, position: Int) {
 
-                // TODO: 추후에 라디오 버튼 리스트로 변경하기
                 clickedList = if (position == 0) {
                     detectedList
                 } else {
@@ -65,7 +61,7 @@ class AIResultFragment : BindingFragment<FragmentAiResultBinding>(R.layout.fragm
     }
 
     private fun clickBackButton() {
-        binding.ivAiResultBack.setOnClickListener{
+        binding.ivAiResultBack.setOnClickListener {
             findNavController().popBackStack()
         }
     }
