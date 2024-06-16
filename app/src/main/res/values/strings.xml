@@ -34,4 +34,11 @@
     <string name="ai_result_detected_info_percent_title">| 진단 확률</string>
     <string name="ai_result_checklist">📌 진단 기반 체크리스트!</string>
     <string name="ai_result_hospital">🔎 주변 동물 병원 찾기</string>
+
+    <!--vet clinics map-->
+    <string name="tv_vet_clinics_title">🔎 주변 동물 병원 찾기</string>
+    <string name="tv_vet_clinics_sub_title">나타난 증상 기반 정확한 질환 진단은 꼭 가까운 동물병원에 내원하셔서 알아보시길 바랍니다.</string>
+    <string name="tv_vet_clinics_name">병원 이름</string>
+    <string name="tv_vet_clinics_date">진료일</string>
+    <string name="tv_vet_clinics_phone">전화번호</string>
 </resources>

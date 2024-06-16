@@ -1,8 +1,13 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("plugin.serialization") version "1.7.20"
+}
 
+val properties = Properties().apply {
+    load(rootProject.file("local.properties").inputStream())
 }
 
 android {
@@ -20,6 +25,11 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val mapKey = properties["google.map.key"] as? String ?: ""
+
+        manifestPlaceholders["mapKey"] = properties["google.map.key"] as String
+        buildConfigField ("String", "GOOGLE_MAP_KEY", "\"${mapKey}\"")
     }
 
     buildTypes {
@@ -41,6 +51,7 @@ android {
     buildFeatures {
         dataBinding = true
         viewBinding = true
+        buildConfig = true
     }
     buildToolsVersion = "34.0.0"
 }
@@ -68,7 +79,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     testImplementation("junit:junit:4.13.2")
 
-
     // Third-Party
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
@@ -78,4 +88,8 @@ dependencies {
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
     implementation("io.coil-kt:coil:2.3.0")
     implementation ("com.airbnb.android:lottie:3.7.0")
+
+    // Google Map
+    implementation ("com.google.android.gms:play-services-location:17.0.0")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
 }
