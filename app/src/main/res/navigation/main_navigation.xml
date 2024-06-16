@@ -21,8 +21,7 @@
         android:label="OnboardingFragment">
         <action
             android:id="@+id/action_onboarding_to_navigation_add_image"
-            app:destination="@id/navigation_add_image"
-            app:popUpToInclusive="true" />
+            app:destination="@id/navigation_add_image" />
     </fragment>
     <fragment
         android:id="@+id/navigation_add_image"
@@ -30,7 +29,7 @@
         android:label="AddImageFragment">
         <action
             android:id="@+id/action_add_image_to_navigation_loading"
-            app:destination="@id/navigation_loading" />
+            app:destination="@id/navigation_loading"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_loading"
@@ -48,10 +47,22 @@
         <action
             android:id="@+id/action_ai_result_to_checklist"
             app:destination="@id/navigation_checklist" />
+        <action
+            android:id="@+id/action_ai_result_to_image"
+            app:destination="@id/navigation_image" >
+            <argument
+                android:name="imgUrl"
+                app:argType="string" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/navigation_checklist"
         android:name="com.bocdoc.anydoc.presentation.CheckListFragment"
         android:label="CheckListFragment" />
+    <fragment
+        android:id="@+id/navigation_image"
+        android:name="com.bocdoc.anydoc.presentation.ImgFragment"
+        android:label="ImageFragment">
+    </fragment>
 
 </navigation>
