@@ -23,12 +23,8 @@ class AddImageFragment : BindingFragment<FragmentAddImageBinding>(R.layout.fragm
     private lateinit var imageFileManager: ImageFileManager
     private lateinit var addImgAdapter: AddImgAdapter
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initAddImageItemAdapter()
-    }
-
     override fun initView() {
+        initAddImageItemAdapter()
         initSetText()
         initAddImageBtnClickListener()
     }
