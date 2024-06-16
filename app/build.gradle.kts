@@ -1,8 +1,13 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("plugin.serialization") version "1.7.20"
+}
 
+val properties = Properties().apply {
+    load(rootProject.file("local.properties").inputStream())
 }
 
 android {
@@ -20,6 +25,11 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val mapKey = properties["google.map.key"] as? String ?: ""
+
+        manifestPlaceholders["mapKey"] = properties["google.map.key"] as String
+        buildConfigField ("String", "GOOGLE_MAP_KEY", "\"${mapKey}\"")
     }
 
     buildTypes {
@@ -41,6 +51,7 @@ android {
     buildFeatures {
         dataBinding = true
         viewBinding = true
+        buildConfig = true
     }
     buildToolsVersion = "34.0.0"
 }
