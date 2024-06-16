@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.bocdoc.anydoc.coreui.view.ItemClick
+import com.bocdoc.anydoc.data.dto.AiResultRadioDto
 import com.bocdoc.anydoc.databinding.ItemAiResultRadioBinding
 import com.bocdoc.anydoc.presentation.viewholder.AiResultRadioViewHolder
 
 class AiResultRadioAdapter :
-    ListAdapter<String, AiResultRadioViewHolder>(
+    ListAdapter<AiResultRadioDto, AiResultRadioViewHolder>(
         AiResultRadioDiffCallback()
     ) {
 
     var aiResultRadioClick: ItemClick? = null
-    var selectedPosition = 0
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -32,22 +32,21 @@ class AiResultRadioAdapter :
         holder.bind(getItem(position))
         holder.itemView.setOnClickListener { view ->
             aiResultRadioClick?.onClick(view, position)
-            selectedPosition = position
         }
     }
 }
 
-class AiResultRadioDiffCallback : DiffUtil.ItemCallback<String>() {
+class AiResultRadioDiffCallback : DiffUtil.ItemCallback<AiResultRadioDto>() {
     override fun areItemsTheSame(
-        oldItem: String,
-        newItem: String
+        oldItem: AiResultRadioDto,
+        newItem: AiResultRadioDto
     ): Boolean {
         return oldItem == newItem
     }
 
     override fun areContentsTheSame(
-        oldItem: String,
-        newItem: String
+        oldItem: AiResultRadioDto,
+        newItem: AiResultRadioDto
     ): Boolean {
         return oldItem == newItem
     }

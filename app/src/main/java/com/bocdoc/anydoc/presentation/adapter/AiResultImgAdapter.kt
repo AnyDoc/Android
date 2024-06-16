@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.bocdoc.anydoc.data.dto.AiResultDetectedDto
+import com.bocdoc.anydoc.coreui.view.ItemClick
 import com.bocdoc.anydoc.databinding.ItemAiResultImgBinding
 import com.bocdoc.anydoc.presentation.viewholder.AiResultImgViewHolder
 
@@ -12,6 +12,7 @@ class AiResultImgAdapter :
     ListAdapter<String, AiResultImgViewHolder>(
         AiResultImgDiffCallback()
     ) {
+    var aiResultImageClick: ItemClick? = null
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -27,6 +28,9 @@ class AiResultImgAdapter :
 
     override fun onBindViewHolder(holder: AiResultImgViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.itemView.setOnClickListener { view ->
+            aiResultImageClick?.onClick(view, position)
+        }
     }
 }
 

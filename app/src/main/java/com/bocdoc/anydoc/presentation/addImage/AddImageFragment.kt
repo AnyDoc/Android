@@ -11,7 +11,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bocdoc.anydoc.R
 import com.bocdoc.anydoc.coreui.base.BindingFragment
 import com.bocdoc.anydoc.coreui.fragment.toast
+import com.bocdoc.anydoc.coreui.view.ItemClick
 import com.bocdoc.anydoc.databinding.FragmentAddImageBinding
+import com.bocdoc.anydoc.presentation.adapter.AiResultRadioAdapter
 
 class AddImageFragment : BindingFragment<FragmentAddImageBinding>(R.layout.fragment_add_image) {
 
@@ -21,12 +23,8 @@ class AddImageFragment : BindingFragment<FragmentAddImageBinding>(R.layout.fragm
     private lateinit var imageFileManager: ImageFileManager
     private lateinit var addImgAdapter: AddImgAdapter
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initAddImageItemAdapter()
-    }
-
     override fun initView() {
+        initAddImageItemAdapter()
         initSetText()
         initAddImageBtnClickListener()
     }
@@ -49,16 +47,23 @@ class AddImageFragment : BindingFragment<FragmentAddImageBinding>(R.layout.fragm
         permissionManager = PermissionManager(requireActivity())
         cameraGalleryManager = CameraGalleryManager()
         imageFileManager = ImageFileManager(requireActivity())
+        clickAddImage(addImgAdapter)
     }
 
     private fun initAddImageBtnClickListener() {
         binding.btnAddImageNext.setOnClickListener {
-            // TODO 위치를 + 아이콘 선택으로 넘겨야할 것 같습니다..!
-            // showImagePickerDialog() // 이미지 선택 다이얼로그 표시
             findNavController().navigate(R.id.action_add_image_to_navigation_loading)
         }
     }
 
+    private fun clickAddImage(adapter: AddImgAdapter){
+        adapter.imageAddClick = object : ItemClick {
+            override fun onClick(view: View, position: Int) {
+                showImagePickerDialog() // 이미지 선택 다이얼로그 표시
+            }
+        }
+
+    }
     private fun initSetText() {
         binding.tvAddImageCount.text =
             getString(R.string.tv_add_image_count, imageList.size, LIST_MAX_SIZE)

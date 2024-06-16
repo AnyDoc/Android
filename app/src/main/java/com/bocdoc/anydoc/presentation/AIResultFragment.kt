@@ -1,11 +1,14 @@
 package com.bocdoc.anydoc.presentation
 
+import android.annotation.SuppressLint
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.bocdoc.anydoc.R
 import com.bocdoc.anydoc.coreui.base.BindingFragment
 import com.bocdoc.anydoc.coreui.view.ItemClick
 import com.bocdoc.anydoc.data.dto.AiResultDetectedDto
+import com.bocdoc.anydoc.data.dto.AiResultRadioDto
 import com.bocdoc.anydoc.databinding.FragmentAiResultBinding
 import com.bocdoc.anydoc.presentation.adapter.AiResultDetectedInfoAdapter
 import com.bocdoc.anydoc.presentation.adapter.AiResultImgAdapter
@@ -18,6 +21,7 @@ class AIResultFragment : BindingFragment<FragmentAiResultBinding>(R.layout.fragm
         setRadioList()
         setDetectedInfoList()
         clickBackButton()
+        clickCheckList()
     }
 
     private fun setImgList() {
@@ -25,6 +29,7 @@ class AIResultFragment : BindingFragment<FragmentAiResultBinding>(R.layout.fragm
         binding.rcvAiResultImgRecyclerview.adapter = adapter
 
         adapter.submitList(imgList)
+        clickImageItem(adapter)
     }
 
     private fun setRadioList() {
@@ -42,21 +47,59 @@ class AIResultFragment : BindingFragment<FragmentAiResultBinding>(R.layout.fragm
         adapter.submitList(clickedList)
     }
 
-    private fun clickRadioItem(adapter: AiResultRadioAdapter, item: List<String>) {
-        adapter.aiResultRadioClick = object : ItemClick {
+    private fun clickImageItem(adapter: AiResultImgAdapter) {
+        adapter.aiResultImageClick = object : ItemClick {
             override fun onClick(view: View, position: Int) {
+                val imgUrl = imgList[position]
+                val bundle = bundleOf("imgUrl" to imgUrl)
+                findNavController().navigate(R.id.action_ai_result_to_image, bundle)
+            }
+        }
+    }
 
-                clickedList = if (position == 0) {
-                    detectedList
-                } else {
-                    detectedList.filter { it.detectedTitle == item[position] }
-                }
-
-                // TODO: 실제 통신 후, LiveData 로 변경해서 적용하기
+    private fun clickRadioItem(adapter: AiResultRadioAdapter, item: List<AiResultRadioDto>) {
+        adapter.aiResultRadioClick = object : ItemClick {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onClick(view: View, position: Int) {
+                clickedList =
+                    when (position) {
+                        0 -> {
+                            detectedList
+                        }
+                        else -> {
+                            detectedList.filter { it.detectedTitle == item[position].title }
+                        }
+                    }
                 setDetectedInfoList()
 
-                adapter.notifyItemChanged(adapter.selectedPosition)
+
+                when(position){
+                    0 -> {
+                        item.get(0).check = true
+                        item.get(1).check = false
+                        item.get(2).check = false
+                    }
+                    1 -> {
+                        item.get(0).check = false
+                        item.get(1).check = true
+                        item.get(2).check = false
+                    }
+                    2 -> {
+                        item.get(0).check = false
+                        item.get(1).check = false
+                        item.get(2).check = true
+                    }
+                }
+
+                adapter.notifyDataSetChanged()
+
             }
+        }
+    }
+
+    private fun clickCheckList() {
+        binding.tvAiResultChecklist.setOnClickListener {
+            findNavController().navigate(R.id.action_ai_result_to_checklist)
         }
     }
 
@@ -68,41 +111,42 @@ class AIResultFragment : BindingFragment<FragmentAiResultBinding>(R.layout.fragm
 
     // 임시 데이터들
     private val imgList = listOf(
-        "https://wallpapercrafter.com/th8002/834705-wildlife-Africa-animals-elephant-animal-wildlife.jpg",
-        "https://blogfiles.pstatic.net/20151218_167/bmh8824gr_1450428440331O1tk1_PNG/%B1%CD%BF%A9%BF%EE_%C8%F1%B1%CD%B5%BF%B9%B0_%B8%F0%C0%BD_%BD%C5%B1%E2%C7%D1_%B5%BF%B9%B0_%BB%E7%C1%F8%B5%E901.png",
-        "https://blogfiles.pstatic.net/20151218_290/bmh8824gr_1450428440553L6eph_PNG/%B1%CD%BF%A9%BF%EE_%C8%F1%B1%CD%B5%BF%B9%B0_%B8%F0%C0%BD_%BD%C5%B1%E2%C7%D1_%B5%BF%B9%B0_%BB%E7%C1%F8%B5%E902.png",
+        "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbzeQFE%2FbtsH0MrV64e%2FIIAUVza577u7NQwogH5lW1%2Fimg.png",
+        "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fdi6jUK%2FbtsH0AkQC7G%2FB2407CJCucyWI1BatWWDGK%2Fimg.png",
+        "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbtYSjn%2FbtsH1gMPPR2%2F8wOBqsyltGhLKGe6jrKD51%2Fimg.png",
+        "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FchLdsU%2FbtsH0pjDlmJ%2FjkwRt4NfuC5NIuv9eUMbMK%2Fimg.png",
+        "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbXJk69%2FbtsH0mmRi6j%2FPYRN5QrmszjfznjevCaQlK%2Fimg.png",
     )
 
     private val detectedList = listOf(
         AiResultDetectedDto(
-            detectedTitle = "비듬,각질",
-            detectedPercent = 93.23f,
-            detectedReason = "이유이유이유이유"
+            detectedTitle = "농포·여드름",
+            detectedPercent = 79.0f,
+            detectedReason = "사진 1,2에서 농포·여드름으로 의심이 되는 부분이 나왔습니다. 각 사진에서 탐지한 의심된 영역이 농포·여드름일 확률은 각각 60%, 79%, 73% 입니다."
         ),
         AiResultDetectedDto(
-            detectedTitle = "증상3",
-            detectedPercent = 93.23f,
-            detectedReason = "이유이유이유이유"
-        ),
-        AiResultDetectedDto(
-            detectedTitle = "증상4",
-            detectedPercent = 93.23f,
-            detectedReason = "이유이유이유이유"
-        ),
-        AiResultDetectedDto(
-            detectedTitle = "증상4",
-            detectedPercent = 93.23f,
-            detectedReason = "이유이유이유이유"
-        ),
-        AiResultDetectedDto(
-            detectedTitle = "증상4",
-            detectedPercent = 93.23f,
-            detectedReason = "이유이유이유이유"
+            detectedTitle = "결절·종괴",
+            detectedPercent = 62.0f,
+            detectedReason = "사진 3,4,5에서 결절·종괴으로 의심이 되는 부분이 나왔습니다. 각 사진에서 탐지한 의심된 영역이 결절·종괴일 확률은 각각 61%, 52%, 62% 입니다."
         ),
     )
 
     private var clickedList = detectedList
 
-    private val radioList = listOf("전체", "비듬,각질", "증상3", "증상4")
+    private val radioList = listOf(
+        AiResultRadioDto(
+            title = "전체",
+            check = true
+        ),
+        AiResultRadioDto(
+            title = "농포·여드름",
+            check = false
+        ),
+        AiResultRadioDto(
+            title = "결절·종괴",
+            check = false
+        ),
+
+    )
 
 }
