@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bocdoc.anydoc.R
 import com.bocdoc.anydoc.coreui.base.BindingFragment
@@ -52,7 +53,9 @@ class AddImageFragment : BindingFragment<FragmentAddImageBinding>(R.layout.fragm
 
     private fun initAddImageBtnClickListener() {
         binding.btnAddImageNext.setOnClickListener {
-            showImagePickerDialog() // 이미지 선택 다이얼로그 표시
+            // TODO 위치를 + 아이콘 선택으로 넘겨야할 것 같습니다..!
+            // showImagePickerDialog() // 이미지 선택 다이얼로그 표시
+            findNavController().navigate(R.id.action_add_image_to_navigation_loading)
         }
     }
 
