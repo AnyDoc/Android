@@ -18,6 +18,7 @@ class AIResultFragment : BindingFragment<FragmentAiResultBinding>(R.layout.fragm
         setRadioList()
         setDetectedInfoList()
         clickBackButton()
+        clickCheckList()
     }
 
     private fun setImgList() {
@@ -57,6 +58,12 @@ class AIResultFragment : BindingFragment<FragmentAiResultBinding>(R.layout.fragm
 
                 adapter.notifyItemChanged(adapter.selectedPosition)
             }
+        }
+    }
+
+    private fun clickCheckList(){
+        binding.tvAiResultChecklist.setOnClickListener {
+            findNavController().navigate(R.id.action_ai_result_to_checklist)
         }
     }
 

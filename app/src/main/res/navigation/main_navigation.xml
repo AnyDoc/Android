@@ -44,5 +44,14 @@
     <fragment
         android:id="@+id/navigation_ai_result"
         android:name="com.bocdoc.anydoc.presentation.AIResultFragment"
-        android:label="AiResultFragment" />
+        android:label="AiResultFragment" >
+        <action
+            android:id="@+id/action_ai_result_to_checklist"
+            app:destination="@id/navigation_checklist" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_checklist"
+        android:name="com.bocdoc.anydoc.presentation.CheckListFragment"
+        android:label="CheckListFragment" />
+
 </navigation>
