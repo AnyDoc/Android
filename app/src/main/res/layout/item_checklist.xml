@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/shape_primary_80_line_10_rect"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="12dp">
+
+        <TextView
+            android:id="@+id/tv_checklist_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AnyDoc.SemiBold.Content01"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Test" />
+
+        <ImageView
+            android:id="@+id/tv_checklist_item_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AnyDoc.SemiBold.Content03"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/selector_checklist_radio"/>
+
+
+        <TextView
+            android:id="@+id/tv_checklist_item_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AnyDoc.Regular.Content04"
+            android:textColor="@color/anydoc_neutral_40"
+            app:layout_constraintTop_toBottomOf="@id/tv_checklist_item_title"
+            tools:text="testesttestesttestesttestesttestesttestesttestesttestest" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
