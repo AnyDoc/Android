@@ -6,10 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.bocdoc.anydoc.R
+import com.bocdoc.anydoc.coreui.view.ItemClick
 import com.bocdoc.anydoc.databinding.ItemAddImageBinding
 
 class AddImgAdapter(private val imgList: ArrayList<Uri>) :
     RecyclerView.Adapter<AddImgAdapter.ViewHolder>() {
+
+    var imageAddClick: ItemClick? = null
+
     inner class ViewHolder(private val binding: ItemAddImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(imgUri: Uri) {
@@ -32,6 +36,9 @@ class AddImgAdapter(private val imgList: ArrayList<Uri>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (position == DEFAULT_IMAGE_POSITION) {
             holder.bindDefault()
+            holder.itemView.setOnClickListener { view ->
+                imageAddClick?.onClick(view, position)
+            }
         } else {
             holder.bind(imgList[adjustedPosition(position)])
         }
