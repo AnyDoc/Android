@@ -23,9 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class VetClinicsMapFragment :
-    BindingFragment<FragmentVetClinicsMapBinding>(R.layout.fragment_vet_clinics_map),
-    OnMapReadyCallback {
+class VetClinicsMapFragment : BindingFragment<FragmentVetClinicsMapBinding>(R.layout.fragment_vet_clinics_map), OnMapReadyCallback {
 
     private var fusedLocationClient: FusedLocationProviderClient? = null
     private lateinit var mMap: GoogleMap
@@ -36,14 +34,19 @@ class VetClinicsMapFragment :
     }
 
     override fun initView() {
+
+        with(binding.rvVetClinics) {
+            adapter = VetClinicsAdapter(vetClinicsList)
+        }
+
+        // Initialize fusedLocationClient
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Initialize map
-        val mapFragment =
-            childFragmentManager.findFragmentById(R.id.fragment_map) as SupportMapFragment?
+        val mapFragment = childFragmentManager.findFragmentById(R.id.fragment_map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
     }
 
@@ -77,9 +80,7 @@ class VetClinicsMapFragment :
                 locationResult?.lastLocation?.let { location ->
                     // Add marker to map
                     val currentLatLng = LatLng(location.latitude, location.longitude)
-                    mMap.addMarker(
-                        MarkerOptions().position(currentLatLng).title("Current Location")
-                    )
+                    mMap.addMarker(MarkerOptions().position(currentLatLng).title("Current Location"))
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
 
                     // Log the current location
@@ -89,11 +90,7 @@ class VetClinicsMapFragment :
         }
 
         // Check if location permission is granted
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             fusedLocationClient?.requestLocationUpdates(locationRequest, locationCallback, null)
         } else {
             requestLocationPermission()
@@ -103,23 +100,13 @@ class VetClinicsMapFragment :
     private fun requestLocationPermission() {
         if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
             // Provide explanation for location permission
-            requestPermissions(
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE
-            )
+            requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
         } else {
-            requestPermissions(
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                LOCATION_PERMISSION_REQUEST_CODE
-            )
+            requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -135,20 +122,14 @@ class VetClinicsMapFragment :
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         // Check if location permission is granted
-        if (ContextCompat.checkSelfPermission(
-                requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             // Enable location layer on map
             mMap.isMyLocationEnabled = true
             // Request last known location
             fusedLocationClient?.lastLocation?.addOnSuccessListener { location ->
                 location?.let {
                     val currentLatLng = LatLng(it.latitude, it.longitude)
-                    mMap.addMarker(
-                        MarkerOptions().position(currentLatLng).title("Current Location")
-                    )
+                    mMap.addMarker(MarkerOptions().position(currentLatLng).title("Current Location"))
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
                     // Log the current location
                     Log.d("VetClinicsMapFragment", "Current location: $currentLatLng")
@@ -159,4 +140,10 @@ class VetClinicsMapFragment :
             toast("Location permission is required.")
         }
     }
+
+    // Dummy data for route adapter
+    private val vetClinicsList = listOf(
+        VetClinics(image = R.drawable.img_vet_clinics_01, name = "산들동물병원", date = "10시 진료 시작", phone = "02-435-7582"),
+        VetClinics(image = R.drawable.img_vet_clinics_02, name = "키움동물병원", date = "매주 일요일 휴무", phone = "02-949-7582")
+    )
 }
