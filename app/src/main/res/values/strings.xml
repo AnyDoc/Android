@@ -9,4 +9,29 @@
     <string name="tv_add_image_max">이미지는 최대 10개까지 추가할 수 있습니다.</string>
     <string name="tv_add_image_camera">카메라로 추가</string>
     <string name="tv_add_image_gallery">갤러리에서 추가</string>
+
+    <!--splash-->
+    <string name="splash_app_logo">app logo</string>
+    <string name="splash_team_name">team name</string>
+
+    <!--onboarding-->
+    <string name="onboarding_illustration">onboarding illustration</string>
+    <string name="onboarding_title"><![CDATA[<font color="#00B98C">AnyDoc</font>과 함께<br>사랑하는 반려동물의<br>피부 증상을 알아봐요]]></string>
+    <string name="onboarding_move_to_next">Start</string>
+
+    <!--loading-->
+    <string name="loading_guide">증상을 탐지하는 중입니다...</string>
+    <string name="loading_info_text01"> 💡  피부 증상이 있는 경우 자주 씻기는 게 좋아요!</string>
+    <string name="loading_info_text02"> 💡  털을 규칙적으로 빗어주는 게 중요해요!</string>
+    <string name="loading_info_text03"> 💡  자주 만지면서 피부에 뭐가 있는지 확인해주세요!</string>
+
+    <!--ai result-->
+    <string name="ai_result_title">피부 증상 탐지 결과지입니다.</string>
+    <string name="ai_result_sub_title">주신 이미지 기반으로 분석된 결과입니다</string>
+    <string name="ai_result_detected_notice">현재 아래와 같은 증상이 감지되었습니다</string>
+    <string name="ai_result_radio_test_text">전체</string>
+    <string name="ai_result_detected_info_more_info">more info about detected things</string>
+    <string name="ai_result_detected_info_percent_title">| 진단 확률</string>
+    <string name="ai_result_checklist">📌 진단 기반 체크리스트!</string>
+    <string name="ai_result_hospital">🔎 주변 동물 병원 찾기</string>
 </resources>

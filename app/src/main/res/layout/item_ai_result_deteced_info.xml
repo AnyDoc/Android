@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/shape_primary_80_line_10_rect"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="12dp">
+
+        <TextView
+            android:id="@+id/tv_ai_result_item_detected_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AnyDoc.SemiBold.Content01"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="비듬, 각질" />
+
+        <ImageView
+            android:id="@+id/iv_ai_result_item_detected_more_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:contentDescription="@string/ai_result_detected_info_more_info"
+            android:src="@drawable/ic_ai_result_item_question"
+            app:layout_constraintBottom_toBottomOf="@id/tv_ai_result_item_detected_info"
+            app:layout_constraintStart_toEndOf="@id/tv_ai_result_item_detected_info"
+            app:layout_constraintTop_toTopOf="@id/tv_ai_result_item_detected_info" />
+
+        <TextView
+            android:id="@+id/tv_ai_result_item_detected_percent_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ai_result_detected_info_percent_title"
+            android:textAppearance="@style/TextAppearance.AnyDoc.Regular.Content04"
+            app:layout_constraintEnd_toStartOf="@id/tv_ai_result_item_detected_percent_num"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_ai_result_item_detected_percent_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AnyDoc.SemiBold.Content03"
+            android:textColor="@color/anydoc_primary_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="97%" />
+
+
+        <TextView
+            android:id="@+id/tv_ai_result_item_detected_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AnyDoc.Regular.Content04"
+            android:textColor="@color/anydoc_neutral_40"
+            app:layout_constraintTop_toBottomOf="@id/tv_ai_result_item_detected_info"
+            tools:text="testesttestesttestesttestesttestesttestesttestesttestest" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

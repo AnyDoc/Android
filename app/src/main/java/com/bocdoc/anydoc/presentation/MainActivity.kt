@@ -9,7 +9,6 @@ class MainActivity  : BindingActivity<ActivityMainBinding>(R.layout.activity_mai
 
     override fun initView() {
       supportFragmentManager.findFragmentById(R.id.container_main)?.findNavController()
-
-
     }
+
 }
